@@ -59,7 +59,7 @@ plugins:
 
 author:
   name   : "Jeremy Thaller"
-  avatar : "/assets/images/bio-photo.jpg"
+  avatar : "/assets/images/Jeremy_headshot_4x3.jpg"
   bio    : "Materials Engineer turned Data Scientist"
   links:
     - label: "Website"
