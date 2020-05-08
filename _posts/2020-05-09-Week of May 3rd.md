@@ -11,7 +11,7 @@ tags:
 ---
 
 # What I did
-* Tried to work on the selenium based automated NY Times crossword retriever
+* Tried to work on the selenium-based automated NY Times crossword retriever
 * Created this Github Pages website
 * Started and finished the project [Facebook friend identifier](https://github.com/jthaller/fb_friend_identifier)
 * Continued work on the Code Academy course: *Build Chatbots with Python*
@@ -25,10 +25,10 @@ with open(filename.json, "r") as read_file:
 ```
 `data` is of type dictionary. It's wonderful.
 * With this project, I created a file called preprocessing.py, where I intended to clean up the chat data. I soon realized, however, that much of the standard preprocessing would remove the idiosyncracies that distinguish each person's chat/writing style. I ended up skipping the preprocessing script, and the NN still made quite good predictions.
-  * Stemming and lemification may be useful/necessary for bag of words lange and topic modelling, but message sender identification (classifier), only basic preprocessing seems necessary -- i.e. removing links and possibly emojis.  
+  * Stemming and lemification may be useful/necessary for bag-of-words language and topic modelling, but for message sender identification (classifier), only basic preprocessing seems necessary -- i.e. removing links and possibly emojis.  
 
 # What I will do next
 * The [Facebook friend identifier](https://github.com/jthaller/fb_friend_identifier) program worked quite well at predicting messages sent from myself or Mike, however it often struggled to identify Rohan. I have a few theories as to why.
-  1. Perhaps there is actually too much training data for Rohan (opposite of data sparsity). The Rohan training data dates all the way back to 2015. It's possible his writing/language style has change dramatically since then. This is important because all my testing messages are recent. Furthermore, Rohan and I talked much for in 2015 than we do now. Thus, his training model could be skewed because of a higher density of outdated chat data. Note: my training data would not be skewed because I also get to add training data from chats with my other friends -- i.e. Rohan only gets his training data from the Rohan-Jeremy chat JSON; I get data from that file *and* the Mike-Jeremy and Thomas-Jeremy files. **Solution:** *Remove rohan_json3 from the training data*.
-  2. It's possible that links and emoji's are screwing up Rohan's data. We changed the thumbs up button (you know, the one that grows when you hold it down longer) to be a rocket. As far as I can tell, this becomes a very strange value when parsed. After all, each rocket must contain the data to represent it's unique size. **Solution:** *Change the preprocessing file to only remove emojis, or to standardized all the rocket ones to the same string.
-* The next logical step in this project would be to provide a group chat to the NN and have it guess who each person in the chat is. For example, replace each name label with something like "mystery person one'' etc. and have the trained NN predict the identify of each mystery person.
+  1. Perhaps there is actually too much training data for Rohan (opposite of data sparsity). The Rohan training data dates all the way back to 2015. It's possible his writing/language style has change dramatically since then. This is important because all my testing messages are recent. Furthermore, Rohan and I talked much more in 2015 than we do now. Thus, his training model could be skewed because of a higher density of outdated chat data. Note: my training data would not be skewed because I also get to add training data from chats with my other friends -- i.e. Rohan only gets his training data from the Rohan-Jeremy chat JSON; I get data from that file *and* the Mike-Jeremy and Thomas-Jeremy files. **Solution:** *Remove rohan_json3 from the training data*.
+  2. It's possible that links and emoji's are screwing up Rohan's data. We changed the thumbs up button (you know, the one that grows when you hold it down longer) to be a rocket. As far as I can tell, this becomes a very strange value when parsed. After all, each rocket must contain the data to represent its unique size. **Solution:** *Change the preprocessing file to only remove emojis, or standardized all the rocket ones to the same string.
+* The next logical step in this project would be to provide a group chat to the NN and have it guess who each person in the chat is. For example, replace each name label with something like "mystery person one'' etc. and have the trained NN predict the identify of each mystery person. All the hard parts for this are already written.
