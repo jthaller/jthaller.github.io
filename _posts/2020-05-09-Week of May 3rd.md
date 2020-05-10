@@ -2,7 +2,7 @@
 title: "Week of May 3rd"
 excerpt_separator: "<!--more-->"
 categories:
-  - Blog
+  - weekly
 tags:
   - Facebook
   - Neural Net
