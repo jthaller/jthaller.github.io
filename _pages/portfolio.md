@@ -1,6 +1,7 @@
 ---
 permalink: /portfolio/
 title: "Portfolio"
+layout: splash 
 ---
 
 # Jeremy K. Thaller
