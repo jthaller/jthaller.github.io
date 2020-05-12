@@ -7,9 +7,9 @@ title: "Portfolio"
 
 ## Natural Language Processing
 ### Projects
-  - Spam Email Identifier (MATLAB, Standford Course) 
+  - Spam Email Identifier (MATLAB, Stanford Course) 
   - Quora Troll Question Identifier (Python, Kaggle)
-  - Chat Bot (based on my face messaging writing style)
+  - Chat Bot (based on my Facebook Messanger writing style)
   
 ## Data Mining
   - Facebook Message Counter
