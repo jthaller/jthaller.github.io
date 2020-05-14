@@ -8,7 +8,7 @@ header:
   overlay_filter: "0"
   overlay_image: /assets/images/confocal.gif
   caption: "Taken on confocal, 2019"
-excerpt: "What I've been working on"
+excerpt: "what I've been working on"
 ---
 
 # Jeremy K. Thaller
