@@ -2,7 +2,7 @@
 title: "First Post: Format of this blog"
 date: 2020-05-06
 categories:
-  - blog
+  - weekly
 tags:
   - 
 ---
