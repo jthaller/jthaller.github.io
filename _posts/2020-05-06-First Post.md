@@ -3,8 +3,6 @@ title: "First Post: Format of this blog"
 date: '2020-05-06'
 categories:
   - weekly
-tags:
-  - 
 ---
 
 This is my first post, and I would like to explain my plan for this blog. During my summer work with my undergraduate thesis advisor, I would have a weekly meeting with her where I presented three things: 
