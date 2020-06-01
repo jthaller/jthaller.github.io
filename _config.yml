@@ -60,7 +60,7 @@ author:
   avatar : "/assets/images/jeremy_square.jpg"
   bio    : "Materials Engineer turned Data Scientist"
   links:
-  - label: "Résumé"
+  - label: "CV"
       icon: "fas fa-fw fa-file-user"
       url: "https://github.com/jthaller/CV/blob/master/CV_Jeremy_Thaller.pdf"
     # - label: "Website"
