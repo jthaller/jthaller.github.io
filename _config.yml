@@ -61,7 +61,7 @@ author:
   bio    : "Materials Engineer turned Data Scientist"
   links:
   - label: "CV"
-      icon: "fas fa-fw fa-file-user"
+      icon: "fas fa-fw fa-id-card"
       url: "https://github.com/jthaller/CV/blob/master/CV_Jeremy_Thaller.pdf"
     # - label: "Website"
     #   icon: "fas fa-fw fa-link"
