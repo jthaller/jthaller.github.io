@@ -114,6 +114,12 @@ defaults:
       layout: single
       author_profile: true
 
+analytics:
+provider: "google-gtag"
+google:
+  tracking_id: "UA-168803951-1"
+  anonymize_ip: false # default
+
 category_archive:
   type: liquid
   path: /categories/
