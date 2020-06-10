@@ -115,7 +115,7 @@ defaults:
       author_profile: true
 
 analytics:
-  provider: "google-universal"
+  provider: "google"
   google:
     tracking_id: "UA-168803951-1"
     anonymize_ip: false # default
@@ -130,3 +130,5 @@ tag_archive:
 markdown: kramdown
 kramdown:
     math_engine: katex
+
+# JEKYLL_ENV=production
