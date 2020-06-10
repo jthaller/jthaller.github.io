@@ -118,7 +118,7 @@ analytics:
   provider: "google-gtag"
   google:
     tracking_id: "UA-168803951-1"
-  anonymize_ip: false # default
+    anonymize_ip: false # default
 
 category_archive:
   type: liquid
@@ -130,3 +130,5 @@ tag_archive:
 markdown: kramdown
 kramdown:
     math_engine: katex
+
+JEKYLL_ENV=production
