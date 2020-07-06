@@ -2,5 +2,9 @@
     "cSpell.words": [
         "colab",
         "tensorboard"
+    ],
+    "cSpell.ignoreWords": [
+        "timeit",
+        "unpooled"
     ]
 }
