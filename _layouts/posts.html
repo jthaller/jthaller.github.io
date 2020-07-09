@@ -4,9 +4,6 @@ layout: archive
 
 {{ content }}
 
-<head>
-  <link rel="shortcut icon" type="image/x-icon" href="assets/images/jt_favicon.ico">
-</head>
 
 <ul class="taxonomy__index">
   {% assign postsInYear = site.posts | group_by_exp: 'post', 'post.date | date: "%Y"' %}
