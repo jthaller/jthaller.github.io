@@ -55,6 +55,7 @@ plugins:
   - jemoji
   - jekyll-include-cache
 
+# Get new icons from fontawesome.com
 author:
   name   : "Jeremy Thaller"
   avatar : "/assets/images/jeremy_square.jpg"
@@ -66,6 +67,9 @@ author:
     # - label: "Website"
     #   icon: "fas fa-fw fa-link"
     #   url: "https://"
+    - label: "Portfolio"
+      icon: "fas fa-suitcase"
+      url: "https://jthaller.github.io/portfolio/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/jthaller"
