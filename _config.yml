@@ -67,7 +67,7 @@ author:
     # - label: "Website"
     #   icon: "fas fa-fw fa-link"
     #   url: "https://"
-    - label: "Portfolio"
+    - label: "Portfolio (under construction)"
       icon: "fas fa-suitcase"
       url: "https://jthaller.github.io/portfolio/"
     - label: "GitHub"
