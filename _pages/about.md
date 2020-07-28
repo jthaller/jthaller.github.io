@@ -11,7 +11,6 @@ header:
   actions:
     - label: "Contact Me"
       url: "https://www.linkedin.com/in/jeremy-thaller-76ba5511b/"
-excerpt: "I'm a graduate student in materials science seeking a job in data science upon graduation."
-
+excerpt: "I'm a graduate student in materials science seeking a data science job in NYC upon graduation."
 ---
 
