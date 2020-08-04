@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: A Weekly Data Science Blog
+title: My Weekly Data Science Blog
 email:
 description: >- # this means to ignore newlines until "baseurl:" 
 twitter_username: username
@@ -59,17 +59,14 @@ plugins:
 author:
   name   : "Jeremy Thaller"
   avatar : "/assets/images/jeremy_square.jpg"
-  bio    : "Materials Engineer turned Data Scientist"
+  bio    : "Materials engineer turned data scientist"
   links:
     - label: "Resume"
       icon: "fas fa-id-card"
       url: "https://github.com/jthaller/short_resume/blob/data_science_resume/data_science_resume.pdf"
-    # - label: "Website"
-    #   icon: "fas fa-fw fa-link"
-    #   url: "https://"
-    - label: "Portfolio (under construction)"
-      # icon: "fas fa-suitcase"
-      icon: "fas fa-satellite"
+    - label: "Portfolio"
+      icon: "fas fa-suitcase"
+      # icon: "fas fa-satellite"
       url: "https://jthaller.github.io/portfolio/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
@@ -83,21 +80,18 @@ author:
 
 footer:
   links:
-#     - label: "Twitter"
-#       icon: "fab fa-fw fa-twitter-square"
-#       url: "https://twitter.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/jthaller"
-#     - label: "Instagram"
-#       icon: "fab fa-fw fa-instagram"
-#       url: "https://instagram.com/"
     - label: "Linkedin"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/jeremy-thaller-76ba5511b/"
     - label: "Kaggle"
       icon: "fab fa-fw fa-kaggle"
       url: "https://www.kaggle.com/fusshandschuhe"
+    - label: "Portfolio"
+      icon: "fas fa-suitcase"
+      url: "https://jthaller.github.io/portfolio/"
 
 defaults:
   # _posts
