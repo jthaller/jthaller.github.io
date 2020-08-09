@@ -55,5 +55,3 @@ $$
 ### Things to Note:
 
 - There is also a version called parametric relu, which is $max(\alpha x,x)$, where $\alpha$ is a learnable parameter. I think this is the same $\alpha$ as the slope in gradient descent, but I'm not positive.
-
-
