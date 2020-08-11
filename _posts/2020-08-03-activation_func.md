@@ -17,7 +17,6 @@ $$
 
 - Max is 1, occurs around $x=4$. Min is zero, occurs around $x=-4$. Not a great range. When $x=0$, $y=0.5$. Sigmoid works like a probability since it returns a number between 0 and 1.
 
-
 ![Sigmoid](https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Logistic-curve.svg/1200px-Logistic-curve.svg.png)
 
 ## Tanh vs. sigmoid
