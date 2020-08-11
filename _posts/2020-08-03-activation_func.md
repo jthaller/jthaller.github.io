@@ -15,7 +15,7 @@ $$
 y = \frac{1}{1+e^{-x}}
 $$
 
-- Max is 1, occurs around $x=4$. Min is zero, occurs around $x=-4$. Not a great range. When $x=0$, $y=0.5$. Sigmoid works like a probability since it returns a number between 0 and 1.
+- Max is 1, occurs around $$x=4$$. Min is zero, occurs around $$x=-4$$. Not a great range. When $$x=0$$, $$y=0.5$$. Sigmoid works like a probability since it returns a number between 0 and 1.
 
 ![Sigmoid](https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Logistic-curve.svg/1200px-Logistic-curve.svg.png)
 
@@ -25,11 +25,11 @@ $$
 
 ### Things to note:
 
-- Max is 1 but min is -1. At $z=0$, $y=0$. Grows faster than the conventional sigmoid. Note, sigmoid is just a shape. Technically tanh is also a sigmoid function, but data scientists 
+- Max is 1 but min is -1. At $$z=0$$, $$y=0$$. Grows faster than the conventional sigmoid. Note, sigmoid is just a shape. Technically tanh is also a sigmoid function, but data scientists mean the first equation when they say sigmoid.
 
 ## Linear activation
 
-- Not really an activation. It's what it sounds like. $y=w*x + b$. Might show up on the exam.
+- Not really an activation. It's what it sounds like. $$y=w*x + b$$. Might show up on the exam.
 
 ## ReLU
 
@@ -53,4 +53,4 @@ $$
 
 ### Things to Note:
 
-- There is also a version called parametric relu, which is $max(\alpha x,x)$, where $\alpha$ is a learnable parameter. I think this is the same $\alpha$ as the slope in gradient descent, but I'm not positive.
+- There is also a version called parametric relu, which is $$max(\alpha x,x)$$, where $$\alpha$$ is a learnable parameter. I think this is the same $$\alpha$$ as the slope in gradient descent, but I'm not positive.
