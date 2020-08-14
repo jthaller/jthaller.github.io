@@ -23,7 +23,7 @@ $$
 
 ![tanh](https://miro.medium.com/max/1190/1*f9erByySVjTjohfFdNkJYQ.jpeg)
 
-### Things to note:
+### Things to note
 
 - Max is 1 but min is -1. At $$z=0$$, $$y=0$$. Grows faster than the conventional sigmoid. Note, sigmoid is just a shape. Technically tanh is also a sigmoid function, but data scientists mean the first equation when they say sigmoid.
 
