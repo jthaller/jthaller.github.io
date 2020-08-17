@@ -81,10 +81,12 @@ author:
 footer:
   links:
     - label: "GitHub"
-      icon: "fab fa-fw fa-github"
+      # icon: "fab fa-fw fa-github" #color i.e. black
+      icon: "fab fa-github"
       url: "https://github.com/jthaller"
     - label: "Linkedin"
-      icon: "fab fa-fw fa-linkedin"
+      # icon: "fab fa-fw fa-linkedin" #color
+      icon: "fab fa-linkedin"
       url: "https://www.linkedin.com/in/jeremy-thaller-76ba5511b/"
     - label: "Kaggle"
       icon: "fab fa-fw fa-kaggle"
