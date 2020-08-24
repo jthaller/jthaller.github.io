@@ -1,6 +1,6 @@
 ---
 title: "Activation Functions Review"
-date: '2020-08-22'
+date: '2020-08-21'
 categories:
   - miscellaneous
 tags:
