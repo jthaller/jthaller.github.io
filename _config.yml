@@ -73,6 +73,8 @@ author:
       url: "https://github.com/jthaller"
     - label: "Linkedin"
       icon: "fab fa-fw fa-linkedin"
+      style: "color:red"
+      # <i class="fa fa-google-plus-square" style="font-size:48px;color:red"></i>
       url: "https://www.linkedin.com/in/jeremy-thaller-76ba5511b/"
     - label: "Kaggle"
       icon: "fab fa-fw fa-kaggle"
