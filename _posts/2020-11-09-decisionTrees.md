@@ -63,7 +63,13 @@ $$
 This is the information gained if you ask whether your opponent has a man and they say yes. The your opponent had a woman, we'd expect a greater amount of information gain, right? In this case, S[Man] and S[Wom] would be different, and the information gained would be:
 
 $$
-\text{Information Gained} = 0.173 - \frac{19}{24} * 0 - \frac{5}{24}*\left(-\frac{1}{5}\log\left( \frac{1}{5}\right) - \frac{4}{5}\log\left(\frac{1}{5}\right) \right) \approx 0.06895
-$$
+\text{Information Gained} = 0.173 - \frac{19}{24} * 0 - \frac{5}{24}* \left\{ -\frac{1}{5}\log\left( \frac{1}{5}\right) - \frac{4}{5}\log\left(\frac{1}{5}\right) \right\} \approx 0.06895
+  $$
 
 See how much more information is gained from if you discover that your opponent picked a woman?
+
+## Splitting trees
+
+In Guess Who, there are many more questions to ask, each of which will give you a certain amount of information. The order in which a decision tree is made is based on which question gives the most information. Each subsequent node split in the tree is a question that provides a smaller information gain. In Guess Who, the question "*Is your person Bill?*" would give the most information if that were indeed the correct guess. If it weren't, it would be a pretty lousy question to start out with.
+
+The game, thus, requires a balance between information gain and the probability that the question you ask will give you that information. This is why Mark Rober's approach was to try and remove as much probability from the game as possible, and stick to True/False questions that split the possibilities in half regardless of how the question is answered.
