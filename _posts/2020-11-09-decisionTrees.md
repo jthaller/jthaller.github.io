@@ -1,6 +1,6 @@
 ---
 title: "Entropy, Information, and Guess Who"
-date: '2020-11-00'
+date: '2020-11-09'
 categories:
   - miscellaneous
 tags:
