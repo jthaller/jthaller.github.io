@@ -16,7 +16,7 @@ $$
 S = k \ln{\Omega}
 $$
 
-where k is Boltzmann's constant and $$\Omega$$ is the number of unique configurations of the system. For example, for 10 unique cards, there are $\Omega = 10!$ configurations. In computer science, however, we define entropy in the same form, but with different, relevant parameters:
+where k is Boltzmann's constant and $$\Omega$$ is the number of unique configurations of the system. For example, for 10 unique cards, there are $$\Omega = 10!$$ configurations. In computer science, however, we define entropy in the same form, but with different, relevant parameters:
 
 $$
 S\left[\text{Node Split 1}\right] = -\sum_{i=1}^n p_i \log{p_i}
@@ -28,7 +28,7 @@ I've switched from ln to log, but I mean the same for both. I'm switching from p
 
 ![](https://www.geekyhobbies.com/wp-content/uploads/2016/02/Guess-Who-1.jpg)
 
-Mark Rober made a great Youtube video about the optimal strategy for playing Guess Who. Much to my satisfaction, it was employed the same strategy that I had tried as a child (much to the annoyance of the rest of my family). He strategy was to combine features into categories that would be able to split the remaining characters in half after each round's question. Before we turn this into a decision tree, let's start by looking a simple case.
+Mark Rober made a great YouTube video about the optimal strategy for playing Guess Who. Much to my satisfaction, it was employed the same strategy that I had tried as a child (much to the annoyance of the rest of my family). He strategy was to combine features into categories that would be able to split the remaining characters in half after each round's question. Before we turn this into a decision tree, let's start by looking a simple case.
 
 Since we're interested in the change in entropy, we need a starting entropy value. In the game, there are 24 characters total with one being chosen as the target person. Okay, technically, since it's a two person game and your opponent can't have the same chosen person as you, there are only 23 options, but I'll ignore that for simplicity. ***Let's classify Bill as the correct guess and all others as incorrect***. Thus, the initial entropy is:
 
