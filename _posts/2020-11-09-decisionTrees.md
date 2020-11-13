@@ -16,13 +16,13 @@ $$
 S = k \ln{\Omega}
 $$
 
-where k is Boltzmann's constant and $\Omega$ is the number of unique configurations of the system. For example, for 10 unique cards, there are $\Omega = 10!$ configurations. In computer science, however, we define entropy in the same form, but with different, relevant parameters:
+where k is Boltzmann's constant and $$\Omega$$ is the number of unique configurations of the system. For example, for 10 unique cards, there are $\Omega = 10!$ configurations. In computer science, however, we define entropy in the same form, but with different, relevant parameters:
 
 $$
 S\left[\text{Node Split 1}\right] = -\sum_{i=1}^n p_i \log{p_i}
 $$
 
-I've switched from ln to log, but I mean the same for both. I'm switching from physics to CS convention. Here, $p_i$ is the fraction of a given label for the tree split. Let's give a concrete example by talking about Guess Who $\copyright$.
+I've switched from ln to log, but I mean the same for both. I'm switching from physics to CS convention. Here, $$p_i$$ is the fraction of a given label for the tree split. Let's give a concrete example by talking about Guess Who $$\copyright$$.
 
 ## Guess Who
 
