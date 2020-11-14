@@ -22,7 +22,7 @@ $$
 S\left[\text{Node Split 1}\right] = -\sum_{i=1}^n p_i \log{p_i}
 $$
 
-I've switched from ln to log, but I mean the same for both. I'm switching from physics to CS convention. Here, $$p_i$$ is the fraction of a given label for the tree split. Let's give a concrete example by talking about Guess Who $$\copyright$$.
+I've switched from ln to log, but I mean the same for both. I'm switching from physics to CS convention. Here, $$p_i$$ is the fraction of a given label for the tree split. Let's give a concrete example by talking about Guess Who.
 
 ## Guess Who
 
