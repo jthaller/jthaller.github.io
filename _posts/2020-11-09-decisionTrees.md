@@ -73,3 +73,38 @@ See how much more information is gained from if you discover that your opponent 
 In Guess Who, there are many more questions to ask, each of which will give you a certain amount of information. The order in which a decision tree is made is based on which question gives the most information. Each subsequent node split in the tree is a question that provides a smaller information gain. In Guess Who, the question "*Is your person Bill?*" would give the most information if that were indeed the correct guess. If it weren't, it would be a pretty lousy question to start out with.
 
 The game, thus, requires a balance between information gain and the probability that the question you ask will give you that information. This is why Mark Rober's approach was to try and remove as much probability from the game as possible, and stick to True/False questions that split the possibilities in half regardless of how the question is answered.
+
+## Tree Impurities
+
+Three common ways to measure tree impurities are misclassification error, the Gini Index, and cross-entropy error. The Gini index and cross-entropy more common because they are more sensitive to changes in node probabilities
+
+1. Misclassification error:
+
+$$
+Error = 1 - Argmax(fraction~true, fraction~false)
+$$
+
+Say the split has 60% of outcomes on the left and 40% on the right. Of the left outcomes, 100% are True, and of the right outcomes 30% are true. Then:
+
+$$
+Error~Left = 1 - Argmax(100 \%, 0\%) \\
+Error~Right = 1 - Argmax(30\%, 70\%) \\
+\Delta Error = E_{orig} - .4*1 - .6*.7
+$$
+
+2. The Gini Index is bounded between 0 and 1/2. The lower the value, the better a split is, since it indicates that probability of classifying it wrong. You always want to choose splits (top down) starting with the split with the lower Gini Index. 
+
+$$
+\text{Unweighted Gini Index} = 2P_1 P_2 \\
+\text{Weighted Gini Index} = P_{left} 2P_1 P_2 + P_{right}2P_1 P_2
+$$
+
+The Gini Index doesn't really make sense to use in the context of Guess Who because the two probabilities are multiplied and will always be zero. To clarify, I'll give a specific example. Let's say our person is Bill, and we are considering two splits: Man/Woman and Red hair/not red hair. As we know, there are 19 men and 5 women. Thus, P1 = 1/19 and P2 = 0/5. So the weighted Gini Index is:
+
+$$
+\text{Weighted Gini Index} = \left(\frac{19}{24}\right)2\left(\frac{1}{19}\right)\left(\frac{0}{5}\right) + \left(\frac{5}{24}\right)2\left(\frac{1}{19}\right)\left(\frac{0}{5}\right)
+$$
+
+See, pretty stupid in this context. But, you can imagine if you were using a decision tree with multiple Trues and Falses as outcomes, the Gini Index would be nonzero. You could calculate the index or other splits (such as red/not red hair) and the one with a lower index will be the better split to choose first.
+
+3. I already talked about minimizing cross entropy in the previous section. When you minimize cross entropy, you maximize information gain.
