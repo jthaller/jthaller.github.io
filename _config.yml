@@ -75,7 +75,7 @@ author:
       icon: "fab fa-fw fa-linkedin"
       style: "color:red"
       # <i class="fa fa-google-plus-square" style="font-size:48px;color:red"></i>
-      url: "https://www.linkedin.com/in/jeremy-thaller-76ba5511b/"
+      url: "https://www.linkedin.com/in/jeremy-thaller/"
     - label: "Kaggle"
       icon: "fab fa-fw fa-kaggle"
       url: "https://www.kaggle.com/fusshandschuhe"
