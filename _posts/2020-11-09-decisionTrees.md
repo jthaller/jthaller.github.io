@@ -74,6 +74,8 @@ In Guess Who, there are many more questions to ask, each of which will give you 
 
 The game, thus, requires a balance between information gain and the probability that the question you ask will give you that information. This is why Mark Rober's approach was to try and remove as much probability from the game as possible, and stick to True/False questions that split the possibilities in half regardless of how the question is answered.
 
+</div>
+
 ## Tree Impurities
 
 Three common ways to measure tree impurities are misclassification error, the Gini Index, and cross-entropy error. The Gini index and cross-entropy more common because they are more sensitive to changes in node probabilities
