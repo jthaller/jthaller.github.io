@@ -7,7 +7,8 @@ tags:
   - Math
   - Decision Trees
 ---
-<div style="text-align: justify">
+
+
 Decision trees are one of the first data structures you learn in computer science (graphically, in practice you might learn them as a linked list), but you might not have learned the best way to construct a decision tree.
 
 Of course there are several ways to decide how to grow a decision tree, but the most common way is to order the splits by the amount of information gained. To quantify the information gained we need to consider the entropy change between layers. If you're a [former] physicist like me, you'll recall that entropy is defined as:
@@ -74,7 +75,6 @@ In Guess Who, there are many more questions to ask, each of which will give you 
 
 The game, thus, requires a balance between information gain and the probability that the question you ask will give you that information. This is why Mark Rober's approach was to try and remove as much probability from the game as possible, and stick to True/False questions that split the possibilities in half regardless of how the question is answered.
 
-</div>
 
 ## Tree Impurities
 
@@ -110,4 +110,3 @@ $$
 See, pretty stupid in this context. But, you can imagine if you were using a decision tree with multiple Trues and Falses as outcomes, the Gini Index would be nonzero. You could calculate the index or other splits (such as red/not red hair) and the one with a lower index will be the better split to choose first.
 
 3. I already talked about minimizing cross entropy in the previous section. When you minimize cross entropy, you maximize information gain.
-</div>
