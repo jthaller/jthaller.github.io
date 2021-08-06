@@ -17,7 +17,7 @@ Here's a nice figure I made this week and a helpful reminder for what the spectr
 ![](https://github.com/jthaller/jthaller.github.io/blob/master/assets/images/interpolation-quality-exp-data.png?raw=true)
 
 ## Approach and what I've been thinking about this week
-One-shot learning regression problems is a difficult problem to say the least. With images, you can show a baby a picture of a dog to a baby that's never seen one before, and the baby will be able to identify all dogs from that photo. This is an example of one-shot learning. In practice, it is a difficult task to achieve one-shot learning classification on a neural network, but because we can do it, it seems like a somewhat reasonable goal. 
+One-shot learning with regression is a difficult problem to say the least. With images, you can show a picture of a dog to a baby that's never seen one before, and the baby will now be able to identify all dogs, just from having seen that one photo. This is an example of one-shot learning. In practice, it is a difficult task to achieve one-shot learning classification on a neural network, but because we can do it, it seems like a somewhat reasonable goal. 
 
 One-shot learning regression problems, however, does not have quite as clean an analogy. The closest example I can think of is if you showed a plot $$sin(\omega t)$$ for a few different values of $$\omega$$. A person could probably make a guess for a new sin wave's period based on which two functions it looked most similar to. But any problem even remotely more complicated becomes impossible for humans. In the case of my neural network, my model doesn't have just one paramter like $$\omega$$, my model requires 100K+ parameters and many convolutional layers just to be able to learn the complex patterns incoded in the simulation spectra.
 
@@ -29,7 +29,7 @@ So if Siemese NN's are so great, why won't this work for my project? Well, I don
 
 One approach for few-shot regression was published in 2017 from the University of Singapore. They reduced the latent space of the problem by Fourier expanding the functions and then predicting the coefficients of the components. So long as the number of training examples is greater than the number of coefficients needed to model the function, training will work well. I like this approach, but I'm not convinced I have enough data for this to work well on my project.
 
-I don't want to divoluge too much about my approach, because...you know...unpublished work...but I'm essentially relying on meta-learners (several stage transfer learning), data-augmententation (synthetic experimental datasets), and purposeful injection of bias early on in the meta-process.
+I don't want to divoluge too much about my approach, because...you know...unpublished work...but I'm essentially relying on several stages transfer learning, data-augmententation (synthetic experimental datasets), and purposeful injection of bias early on in the process to select candidates likely to perform well for the fine-tuning process.
 
 
 
