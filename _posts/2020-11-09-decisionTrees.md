@@ -86,7 +86,7 @@ $$
 Error = 1 - Argmax(fraction~true, fraction~false)
 $$
 
-Say the split has 60% of outcomes on the left and 40% on the right. Of the left outcomes, 100% are True, and of the right outcomes 30% are true. Then:
+Say the split has 40% of outcomes on the left and 60% on the right. Of the left outcomes, 100% are True, and of the right outcomes 30% are true. Then:
 
 $$
 Error~Left = 1 - Argmax(100 \%, 0\%) \\
