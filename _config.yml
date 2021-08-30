@@ -106,6 +106,8 @@ defaults:
       type: posts
     values:
       layout: single
+      classes: wide # added to extend page width
+
       author_profile: true
       read_time: true
       comments: true
