@@ -12,7 +12,7 @@ header:
     - label: "Contact Me"
       url: "https://www.linkedin.com/in/jeremy-thaller"
     - label: "My Resume"
-      url: "https://github.com/jthaller/short_resume/raw/data_science_resume/THALLER_resume.pdf"
+      url: "https://resume.jeremythaller.com/"
     - label: "My Portfolio"
       url: "https://jeremythaller.com"
 excerpt: "I'm a graduate student in materials science seeking a data science job in NYC upon graduation in September."

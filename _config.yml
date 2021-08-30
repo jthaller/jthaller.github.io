@@ -64,7 +64,7 @@ author:
     - label: "Resume"
       icon: "fas fa-id-card"
     #  url: "https://github.com/jthaller/short_resume/raw/data_science_resume/THALLER_resume.pdf"
-      url: "https://thaller.dev/resume/resume"
+      url: "https://resume.jeremythaller.com/"
     - label: "Portfolio"
       icon: "fas fa-suitcase"
       # icon: "fas fa-satellite"
