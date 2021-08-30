@@ -10,7 +10,7 @@ tags:
 One-shot transfer learning with regression
 
 ## Motivation
-Super quick project recap: I want to predict the disorder (label) from a spectrum (signal). I'd like to make the prediction on experimental data, but there's only a few examples. So I trained the network on simulation data and am now applying transfer learning.
+Super quick project recap: I want to predict the disorder (label) from a spectrum (signal). I'd like to make the prediction on experimental data, but there are only a few examples. So I trained the network on simulation data and am now applying transfer learning.
 
 Here's a nice figure I made this week and a helpful reminder for what the spectra I'm working with look like, in general.
 <!-- <iframe src="/assets/images/same_r_random_dir_plotly.html" height="600px" width="150%" style="border:none;"></iframe> -->
