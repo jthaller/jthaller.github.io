@@ -5,7 +5,9 @@ categories:
   - miscellaneous
 tags: 
 - cognition
-classes: wide
+classes: 
+- wide
+- {: .text-justify}
 ---
 
 Since graduating high school six years ago, I've always felt like my long-term memory and ability to meaningfully learn new concepts has been declining. Anecdotally, it seems I'm by no means the only one. Why, for example, do I remember the Teapot Dome Scandal, and yet, I have to look up the formula for a Fourier Transformation every time? I've had to use the formula dozens of times over the years, but it just doesn't stick in my brain. At first, I feared it was simply a phenomenon of age, but I'm far too young for that to be the case. My next concern was to address my sleep. Memory consolidation occurs mainly during sleep, so I tried to determine how my sleep habits have changed since high school. Although I listen to podcasts now as I fall asleep, it's not like I never did that back then. More importantly, I only slept an average of five hours every night in HS (yeah, ABRHS was terrible). Since then, I've prioritized my sleep above almost anything else, so if anything, I would think my consolidation should have improved in college. Alas, my declining ability to synaptically retrieve what I learned yesterday is not a symptom of a decaying brain—instead, it is the side-effect of how the internet has fundamentally changed the way our brains work. 
