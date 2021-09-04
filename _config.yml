@@ -14,7 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: My Weekly Data Science Blog
-email:
+email: jeremy@thaller.dev
 description: >- # this means to ignore newlines until "baseurl:" 
 twitter_username: username
 github_username: jthaller
@@ -69,7 +69,7 @@ author:
     - label: "Portfolio"
       icon: "fas fa-suitcase"
       # icon: "fas fa-satellite"
-      url: "https://jthaller.github.io/portfolio/"
+      url: "https://jeremythaller.com" #"https://jthaller.github.io/portfolio/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/jthaller"
@@ -98,7 +98,7 @@ footer:
       url: "https://www.kaggle.com/fusshandschuhe"
     - label: "Portfolio"
       icon: "fas fa-suitcase"
-      url: "https://jthaller.github.io/portfolio/"
+      url: "https://jeremythaller.com" #"https://jthaller.github.io/portfolio/"
 
 defaults:
   # _posts
