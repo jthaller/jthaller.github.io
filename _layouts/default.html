@@ -44,7 +44,8 @@
 
   <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
     {% include_cached skip-links.html %}
-    {% include_cached browser-upgrade.html %}
+    <!-- REMOVING THE LINE BELOW BECAUSE IT"S CAUSING ERROS ALL OF A SUDDEN 6-29-2022 -->
+    <!-- {% include_cached browser-upgrade.html %} -->
     {% include_cached masthead.html %}
 
     <div class="initial-content">

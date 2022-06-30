@@ -3,7 +3,6 @@ title: "ETL With Apache Airflow"
 date: '2022-06-29'
 categories:
   - miscellaneous
-  - data engineering
 tags: 
 - airflow
 - apache

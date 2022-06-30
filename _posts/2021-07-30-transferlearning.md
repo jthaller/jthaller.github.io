@@ -23,7 +23,7 @@ One-shot learning regression problems, however, do not have quite as clean an an
 
 So, how does one go about applying transfer learning, anyway? A lot of common approaches for classification don't work well with regression, and even the ones that do, still require more data than I have. For example, Siemese networks are a common way for training a network for classifying fraudulent signatures that can be expanded with one-shot learning pretty well. The idea is to train two identical networks (both architecture and parameters) at the same time, but provide different inputs to each network. You create a pairs of training samples and one half of the pair to one network and the other half to the other network. The network learns to predict the difference between real and fraudulent signatures based on the output of the networks for valid-fraudulent pairs.
 
->FREE PAPER IDEA: I think you could train a Siamese CNN to remove noise >from absorption spectra (or really any signal processing) by creating a >matching synthetic dataset with Gaussian white noise added to the >signals.
+>FREE PAPER IDEA: I think you could train a Siamese CNN to remove noise from absorption spectra (or really any signal processing) by creating a matching synthetic dataset with Gaussian white noise added to the signals.
 
 So if Siemese NN's are so great, why won't this work for my project? Well, I don't have pairs of simulation-experimental data. I want the network to systematically learn the difference between the simulation and experimental data, but I only have 2 examples of experimental data---one of which I need to save for testing! 
 
