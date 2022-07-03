@@ -28,7 +28,26 @@ Now we download the docker-compose yaml file via cURL:
 curl -L -LfO 'https://airflow.apache.org/docs/stable/docker-compose.yaml'
  ```
 
-Note that the `-L` parameter stands for `--location`, allowing curl to follow any redictions. Nezt we add some relavent directories
+Note that the `-L` parameter stands for `--location`, allowing curl to follow any redictions. In order to make the postgres database accessible outside of the container (let's say we wanted to explore the database using DBeaver, which is installed on our local machine), we need to add these two lines of code under the postgres section.
+
+```
+services:
+  postgres:
+    ...
+    ...
+    ports:
+      - 5432:5432
+```
+
+I also had to add the port to my hosts to tell it to look for the localhost.
+
+```
+> nano ~/etc/hosts
+# now add this line
+5432 127.0.0.1
+```
+
+Next we add some relavent directories
 
 ```
  mkdir ./dags ./plugins ./logs
