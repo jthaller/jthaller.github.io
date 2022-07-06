@@ -70,6 +70,8 @@ docker-compose up airflow-init
 
 Now, go to [http://localhost:8080](http://localhost:8080) and login with airflow as the username and password (the defaults in the image). You should see lots of example dags that are included.
 
+# Part 2: Automating the OAuth access token refresh
+(Done, just writing up how I did it)
 
 <!-- ## Miscellaneous notes for later
 to do api calls
@@ -82,3 +84,25 @@ To enter the bash of the python installation within docker being used for the da
 docker exec -ti d0a7f75e6335 bash
 ```
 This might be useful to `pip install` something -->
+<!-- 
+
+
+
+
+generate an access. token automatically by gettin ga refresh token and using that to regenerate one. -->
+<!-- curl -d client_id=0482e7425dbe4e529ccb26fa530d7261 -d client_secret=25bac7257e1f4843be265f1c09c96492 -d grant_type=authorization_code -d code=AQCYTA3vyvs7OcNEL9EGlI5SQ9CYrS6xki_gX21_4ow10Jwan7iuTFiVyBNq4Irpg8JwspE4qtX1p11DxXg7uZ2-w3PmK6UCEgoLO2cblAybcWuGZEmNuFQZ8507baP1iki2Jdi-w4zlu_ZYd-rI82lMF5817bchIIPWn3YX-k-qy59bXoUFf5T1Ow1-VGD1uLHtLhXNOAM -d redirect_uri=https://jeremythaller.com  https://accounts.spotify.com/api/token -->
+
+<!-- https://benwiz.com/blog/create-spotify-refresh-token/ -->
+
+<!-- _client_id = Variable.get("SPOTIFY_CLIENT_ID") -->
+<!-- #     _client_secret = Variable.get("SPOTIFY_CLIENT_SECRET")
+#     auth_url = 'https://accounts.spotify.com/api/token'
+#     # client-credentials  'authorization-code', user-read-recently-played
+#     auth_data = {'grant_type': 'authorization-code',
+#                 'client_id': _client_id,
+#                 'client_secret': _client_secret,
+#                 'response_type': 'code'
+#                 }
+#     auth_response = requests.post(auth_url, data=auth_data)
+#     access_token = auth_response.json().get('access_token') -->
+<!-- https://github.com/EuanMorgan/SpotifyDiscoverWeeklyRescuer/blob/master/secrets.py -->
