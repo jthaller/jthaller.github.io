@@ -71,7 +71,70 @@ docker-compose up airflow-init
 Now, go to [http://localhost:8080](http://localhost:8080) and login with airflow as the username and password (the defaults in the image). You should see lots of example dags that are included.
 
 # Part 2: Automating the OAuth access token refresh
-(Done, just writing up how I did it)
+Spotify now requires OAuth to gain API access to personal data, such as your recently played songs. The tricky thing with OAuth, is that it requires manual approval on a website to grant permissions. This is very difficult to do through airflow, because it's not intended to be run with interactive scripts. I thought about using selenium to interact with the webpage and grant permission, but I realized there's a much easier solution. Permsissions access only needs to be manually approved the first time. After doing this, Spotify gives a `refresh token` that can be used to gain an up-to-date `access token` upon request, without having to manually grant permissions through the web interface again.
+
+To manually get the refresh token the first time, I ended up just doing it with `cURL` in the terminal, but you could do it with the `spotipy` package pretty easily if you want. 
+
+```python
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth
+from spotipy.oauth2 import SpotifyPKCE
+
+CLIENT_ID = ''
+CLIENT_SECRET = ''
+REDIRECT_URI = '' # example I used "https://jeremythaller.com"
+
+sp = spotipy.Spotify(auth_manager=SpotifyPKCE(client_id=CLIENT_ID,
+                                                client_secret=CLIENT_SECRET,
+                                                redirect_uri=REDIRECT_URI,
+                                                scope=["user-read-recently-played",
+                                                        "user-library-read",
+                                                        "playlist-read-private"
+                                                      ]
+                                                )
+                    )
+results = sp.current_user_saved_tracks()
+for idx, item in enumerate(results['items']):
+    track = item['track']
+    print(idx, track['artists'][0]['name'], " – ", track['name'])
+```
+
+To do in the the CLI, after creating an app with my spotify developers account, and assigning a URI to my app (important, don't forget to do this). To get the `$CODE` part for the terminal command, you can just visit this url in your browser and grant permissions. For `$SCOPE` I used `user-read-recently-played`. I'm not sure if you can pass it a list with multiple scopes. And for my `REDIRECT_URI` I just set it up to be https://jeremythaller.com.
+
+```bash
+https://accounts.spotify.com/authorize?response_type=code&client_id=$CLIENT_ID&scope=$SCOPE&redirect_uri=$REDIRECT_URI
+```
+
+This will open you browser and you'll grant it permissions. It'll forward you to your redirect_uri with an addition to the URL called `code=$CODE`. Add that code and a few more parts and run this terminal command
+```bash
+curl -d client_id=$CLIENT_ID -d client_secret=$CLIENT_SECRET -d grant_type=authorization_code -d code=$CODE -d redirect_uri=$REDIRECT_URI  https://accounts.spotify.com/api/token
+```
+This will a JSON, and you can store your `client_id`, `client_secret`, and `refresh token` as variables within airflow. You also need to store the [64-bit encoded](https://www.base64encode.org/) `client_id`:`client_secret$` value too. I saved it in Airflow as a variable called `BASE_64_ID:SECRET`. Now, you can retreive these to refresh your token whenever you need to run an API call. Here's a function I wrote to grab you a refreshed token after having stored those three values in Airflow: 
+
+```python
+from airflow.models import Variable
+
+def refresh_api_token():
+        refresh_token = Variable.get("REFRESH_TOKEN")
+        base_64_id_secret = Variable.get("BASE_64_ID:SECRET")
+
+        query = "https://accounts.spotify.com/api/token"
+
+        response = requests.post(query,
+                                 data={"grant_type": "refresh_token",
+                                       "refresh_token": refresh_token},
+                                 headers={"Authorization": "Basic " + base_64_id_secret})
+
+        response_json = response.json()
+        print(response_json)
+        return response_json["access_token"]
+
+token = refresh_api_token()
+```
+
+
+
+
 
 <!-- ## Miscellaneous notes for later
 to do api calls
@@ -89,20 +152,6 @@ This might be useful to `pip install` something -->
 
 
 
-generate an access. token automatically by gettin ga refresh token and using that to regenerate one. -->
-<!-- curl -d client_id=0482e7425dbe4e529ccb26fa530d7261 -d client_secret=25bac7257e1f4843be265f1c09c96492 -d grant_type=authorization_code -d code=AQCYTA3vyvs7OcNEL9EGlI5SQ9CYrS6xki_gX21_4ow10Jwan7iuTFiVyBNq4Irpg8JwspE4qtX1p11DxXg7uZ2-w3PmK6UCEgoLO2cblAybcWuGZEmNuFQZ8507baP1iki2Jdi-w4zlu_ZYd-rI82lMF5817bchIIPWn3YX-k-qy59bXoUFf5T1Ow1-VGD1uLHtLhXNOAM -d redirect_uri=https://jeremythaller.com  https://accounts.spotify.com/api/token -->
-
 <!-- https://benwiz.com/blog/create-spotify-refresh-token/ -->
 
-<!-- _client_id = Variable.get("SPOTIFY_CLIENT_ID") -->
-<!-- #     _client_secret = Variable.get("SPOTIFY_CLIENT_SECRET")
-#     auth_url = 'https://accounts.spotify.com/api/token'
-#     # client-credentials  'authorization-code', user-read-recently-played
-#     auth_data = {'grant_type': 'authorization-code',
-#                 'client_id': _client_id,
-#                 'client_secret': _client_secret,
-#                 'response_type': 'code'
-#                 }
-#     auth_response = requests.post(auth_url, data=auth_data)
-#     access_token = auth_response.json().get('access_token') -->
 <!-- https://github.com/EuanMorgan/SpotifyDiscoverWeeklyRescuer/blob/master/secrets.py -->
