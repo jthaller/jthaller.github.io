@@ -123,15 +123,25 @@ def refresh_api_token():
         response = requests.post(query,
                                  data={"grant_type": "refresh_token",
                                        "refresh_token": refresh_token},
-                                 headers={"Authorization": "Basic " + base_64_id_secret})
+                                 headers={"Authorization": "Basic {}".format(base_64_id_secret)}
+                                 )
 
         response_json = response.json()
-        print(response_json)
         return response_json["access_token"]
 
 token = refresh_api_token()
 ```
 
+# Part 3: Machine Learning and creating a recommendation algorithm
+**( In Progress )**
+
+There are a few ways to go about making recommendations. One basic algorithm that is typically used is called something like user-user recommendations. Essentially, you create a venn diagram of the listening history of two users, trying to maximize the overlap. Then what remains (the outer-join) are songs that person A has listened to but person B hasn't (and vice-versa). These are the songs you recommend to the other person. In practice, you could make a song-vector (like a word-vector in nlp) of recent listening history, then use cosine similarity to find the most similar user-listening-history. Then, do the outer-join and use those songs for the recommendation.
+
+I'm interested in something much more grand. Song embeddings to find similar songs. Something similar to [this](https://colab.research.google.com/github/jalammar/jalammar.github.io/blob/master/notebooks/nlp/02_Song_Embeddings.ipynb#scrollTo=suXLSoj5JzSU), though, perhaps I'll use the API to download a ton of playlists and create my own embeddings instead. The limitation would just be how easy it is to get a ton of spotify playlists and how much storage it would take (shouldn't be an issue since all I need is the URI ID for every song in the playlist, but I don't think I can filter to only pull that from the API, so I might need to do something like multi-threading and toss out the extra info to speed up the scraping and not blow up my storage un-necessarily.)
+
+What I might do for now, is just use the API to pull a similar song based on spotify's recommendation API (which uses their own embeddings to find similar songs). This feels a little like cheating, but I think it might be a good temporary solution to make sure I have a finished project before returning to the run part.
+
+# Part 4: Push this ML-recommended playlist to spotify account
 
 
 
