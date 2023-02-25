@@ -201,8 +201,8 @@ def create_recommendations(self) -> list:
 ```python
 def create_playlist(self):
         database_location = 'postgresql+psycopg2://airflow:airflow@postgres/airflow'
-        # spotify_user_id = Variable.get("SPOTIFY_CLIENT_ID")
-        # access_token = token.access_token
+        spotify_user_id = Variable.get("SPOTIFY_CLIENT_ID")
+        access_token = token.access_token
 
         headers = {
             "Accept" : "application/json",
@@ -247,10 +247,8 @@ def add_to_playlist(self, uris: list):
         uris_str = ','.join(uris)
         print(uris_str)
         api_arg = "https://api.spotify.com/v1/playlists/{}/tracks?uris={}".format(self.new_playlist_id, uris_str)
-        # api_arg = "https://api.spotify.com/playlists/{}/tracks".format(self.new_playlist_id) #, uris_str)
 
         response = requests.post(api_arg,
-                                #  data={"uris": uris},
                                  headers={"Content-Type": "application/json",
                                           "Authorization": "Bearer {}".format(self.access_token)
                                           }
