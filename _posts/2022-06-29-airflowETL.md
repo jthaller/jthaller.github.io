@@ -19,6 +19,8 @@ I've slowly been expanding from data science into data engineering, and I though
 
 The goal is to do all the ETL with airflow and python. Then, using the postgres database we'be created, query the relavent data and use machine learning to recommend songs based on my most recent listening patterns (using the recomendation algorithm I trained on Kaggle last year).
 
+
+
 # Step 1. Install Docker with an Apache Airflow Image
 For reference, I'm installing this on MacOS. First, [install the proper version of Docker Desktop](https://docs.docker.com/desktop/mac/install/) - this will include Docker CLI and Docker Compose.
 
@@ -133,16 +135,122 @@ token = refresh_api_token()
 ```
 
 # Part 3: Machine Learning and creating a recommendation algorithm
-**( In Progress )**
 
 There are a few ways to go about making recommendations. One basic algorithm that is typically used is called something like user-user recommendations. Essentially, you create a venn diagram of the listening history of two users, trying to maximize the overlap. Then what remains (the outer-join) are songs that person A has listened to but person B hasn't (and vice-versa). These are the songs you recommend to the other person. In practice, you could make a song-vector (like a word-vector in nlp) of recent listening history, then use cosine similarity to find the most similar user-listening-history. Then, do the outer-join and use those songs for the recommendation.
 
-I'm interested in something much more grand. Song embeddings to find similar songs. Something similar to [this](https://colab.research.google.com/github/jalammar/jalammar.github.io/blob/master/notebooks/nlp/02_Song_Embeddings.ipynb#scrollTo=suXLSoj5JzSU), though, perhaps I'll use the API to download a ton of playlists and create my own embeddings instead. The limitation would just be how easy it is to get a ton of spotify playlists and how much storage it would take (shouldn't be an issue since all I need is the URI ID for every song in the playlist, but I don't think I can filter to only pull that from the API, so I might need to do something like multi-threading and toss out the extra info to speed up the scraping and not blow up my storage un-necessarily.)
+I've created two recommendation algorithms based on song vectors. The first, uses Spotify's own song features, and loops through all the songs in the database to find the most similar song via the cosine distance. A basic implimentation of this algorithm can be found in my Kaggle notebook: [Spotify-EDA with PySpark and Clustering](https://www.kaggle.com/code/fusshandschuhe/spotify-eda-with-pyspark-and-clustering). This algorithm becomes very memory intensive, as cosine comparisons rely on one-hot-encoded variable; you end up with a very high dimensional vector. In terms of computational complexity, it's not as bad. The comparison is O(n) time complexity, and is very easy to optimize via MapReduce. A MapReduce job partitions the input data-set into independent chunks, which are then processed by the map tasks in parallel. The framework sorts the outputs of the maps, which are then input to the reduce tasks.
 
-What I might do for now, is just use the API to pull a similar song based on spotify's recommendation API (which uses their own embeddings to find similar songs). This feels a little like cheating, but I think it might be a good temporary solution to make sure I have a finished project before returning to the run part.
+I'm interested in incorporating NLP as part of the recommendation algorithm. Instead of considering song properties, consider playlists. Spotify has made publicly available a [dataset containing one million spotify playlists](https://research.atspotify.com/2020/09/the-million-playlist-dataset-remastered/). Using these playlists, we can create song embeddings and recommend a song based on what predicted song would come next in a playlist. The NLP analog is predicting which word comes next in a sentence using Word2Vec. This [Kaggle Notebok](https://www.kaggle.com/code/ashwinik/songs-recommendation-using-word2vec-on-playlist) does something very similar, and you can download their embeddings to use with my python scripts. At some point, I created my own embeddings and played around with skip-grams (predict missing song between two songs in a playlist) versus continuous bag of words (predict the next song in a playlist) as well as differnet window sizes, but I seem to have lost this notebook when I upgraded laptops.
+
+Using the embeddings, it very easy to find similar songs. Gensim's word2vec package literally has a `most_similar()` function to give you the most similar songs in a semantically similar context. I used song_ids to simplify the embedding process (since they are unique), however, this meant I had to do a lot of dictionary reversing to extract the titles.
+
+```python    
+def similar_songs(self, song:tuple, n:int) -> list:
+        """ Gets the songname from user and return the n similar songs """
+
+        song_name = song[0]
+        song_id = song[1]
+        print ("Searching for songs similar to :", song_name)
+        try:
+            similar = self.model.most_similar(song_id, topn=n)
+        except KeyError:
+            print(f"couldn't find {song_name}, {song_id} for some reason")
+            return []
+
+        print ("Similar songs are as follow:")
+        for id, _ in similar:
+            print (self.reverse_titles_dict[id])
+        return [self.reverse_titles_dict[id] for id, _ in similar]
+```
+```python
+def create_recommendations(self) -> list:
+        """
+        No inputs. Get recent songs. Filter to just ones we have embeddings for.
+        Get the 2 most similar songs for each. Return the URIs as a list of strings.
+        """
+
+        songs_df = self.get_recent_songs()
+
+        # match the listening history to song embeddings
+        matched_songs_ids = []
+        for song in songs_df.song_name.values:
+            try: # try to match and see if we have an embedding for the
+                matched_songs_ids.append((song, self.song_title_dict[song.lower()]))
+                print(song, '--', self.song_title_dict[song.lower()])
+            except KeyError:
+                print(f"{song} -- not found")
+        
+        print("Found {}/{} songs".format(len(matched_songs_ids), songs_df.shape[0]))
+
+        similar_songs = [self.similar_songs(song=song_tuple, n=2) for song_tuple in matched_songs_ids]
+        similar_songs =  [y for x in similar_songs for y in x]
+        print(similar_songs)
+        uris = [self.get_uri(song) for song in similar_songs]
+        print(uris)
+        return uris
+```
 
 # Part 4: Push this ML-recommended playlist to spotify account
 
+```python
+def create_playlist(self):
+        database_location = 'postgresql+psycopg2://airflow:airflow@postgres/airflow'
+        # spotify_user_id = Variable.get("SPOTIFY_CLIENT_ID")
+        # access_token = token.access_token
+
+        headers = {
+            "Accept" : "application/json",
+            "Content-Type" : "application/json",
+            "Authorization" : "Bearer {}".format(self.access_token)
+        }
+
+        # Create a new playlist
+        print("Trying to create playlist...")
+
+        today = date.today()
+        todayFormatted = today.strftime("%d/%m/%Y")
+
+
+        query = "https://api.spotify.com/v1/users/{}/playlists".format(self.user_id)
+
+        request_body = json.dumps({
+            "name": "AI Generated Playlist - {}".format(todayFormatted),
+            "description": "An AI generated playlist based on the previous week's listening history",
+            "public": True
+            }
+        )
+
+        response = requests.post(query,
+                                 data=request_body,
+                                 headers=headers
+        )
+
+        response_json = response.json()
+        print(response_json)
+        return response_json["id"]
+```
+
+
+```python
+def add_to_playlist(self, uris: list):
+        # add all songs to new playlist
+        print("Adding songs...")
+
+        self.new_playlist_id = self.create_playlist()
+
+        uris_str = ','.join(uris)
+        print(uris_str)
+        api_arg = "https://api.spotify.com/v1/playlists/{}/tracks?uris={}".format(self.new_playlist_id, uris_str)
+        # api_arg = "https://api.spotify.com/playlists/{}/tracks".format(self.new_playlist_id) #, uris_str)
+
+        response = requests.post(api_arg,
+                                #  data={"uris": uris},
+                                 headers={"Content-Type": "application/json",
+                                          "Authorization": "Bearer {}".format(self.access_token)
+                                          }
+        )
+        print("Finished - Response JSON:", response )
+```
 
 
 
