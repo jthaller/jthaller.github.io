@@ -19,9 +19,15 @@ I've slowly been expanding from data science into data engineering, and I though
 
 The goal is to do all the ETL with airflow and python. Then, using the postgres database we'be created, query the relavent data and use machine learning to recommend songs based on my most recent listening patterns (using the recomendation algorithm I trained on Kaggle last year).
 
+## Sections
+
+1. [Docker Setup](#Docker)
+2. [OAuth Access Token](#access_token)
+3. [Machine Learning](#ML)
+4. [Push Playlist](#push)
 
 
-# Step 1. Install Docker with an Apache Airflow Image
+# Step 1. Install Docker with an Apache Airflow Image<a id="Docker"></a>
 For reference, I'm installing this on MacOS. First, [install the proper version of Docker Desktop](https://docs.docker.com/desktop/mac/install/) - this will include Docker CLI and Docker Compose.
 
 Now we download the docker-compose yaml file via cURL:
@@ -72,7 +78,7 @@ docker-compose up airflow-init
 
 Now, go to [http://localhost:8080](http://localhost:8080) and login with airflow as the username and password (the defaults in the image). You should see lots of example dags that are included.
 
-# Part 2: Automating the OAuth access token refresh
+# Part 2: Automating the OAuth Access Token Refresh<a id="access_token"></a>
 Spotify now requires OAuth to gain API access to personal data, such as your recently played songs. The tricky thing with OAuth, is that it requires manual approval on a website to grant permissions. This is very difficult to do through airflow, because it's not intended to be run with interactive scripts. I thought about using selenium to interact with the webpage and grant permission, but I realized there's a much easier solution. Permsissions access only needs to be manually approved the first time. After doing this, Spotify gives a `refresh token` that can be used to gain an up-to-date `access token` upon request, without having to manually grant permissions through the web interface again.
 
 To manually get the refresh token the first time, I ended up just doing it with `cURL` in the terminal, but you could do it with the `spotipy` package pretty easily if you want. 
@@ -134,7 +140,7 @@ def refresh_api_token():
 token = refresh_api_token()
 ```
 
-# Part 3: Machine Learning and creating a recommendation algorithm
+# Part 3: Machine Learning and Creating a Recommendation Algorithm<a id="ML"></a>
 
 There are a few ways to go about making recommendations. One basic algorithm that is typically used is called something like user-user recommendations. Essentially, you create a venn diagram of the listening history of two users, trying to maximize the overlap. Then what remains (the outer-join) are songs that person A has listened to but person B hasn't (and vice-versa). These are the songs you recommend to the other person. In practice, you could make a song-vector (like a word-vector in nlp) of recent listening history, then use cosine similarity to find the most similar user-listening-history. Then, do the outer-join and use those songs for the recommendation.
 
@@ -190,7 +196,7 @@ def create_recommendations(self) -> list:
         return uris
 ```
 
-# Part 4: Push this ML-recommended playlist to spotify account
+# Part 4: Push this ML-recommended Playlist to Spotify Account<a id="push"></a>
 
 ```python
 def create_playlist(self):
