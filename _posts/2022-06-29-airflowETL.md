@@ -17,14 +17,16 @@ classes:
 
 I've slowly been expanding from data science into data engineering, and I thought building a full-stack pipeline would be a demonstration of what I can do. Personally, I also find it useful to document the process, in case I need to refer to it at a later date, or if someone else ends up doing a similar project.
 
-The goal is to do all the ETL with airflow and python. Then, using the postgres database we'be created, query the relavent data and use machine learning to recommend songs based on my most recent listening patterns (using the recomendation algorithm I trained on Kaggle last year).
+The goal is to do all the ETL with airflow and python. Then, using the postgres database we've created, query the relevant data and use machine learning to recommend songs based on my most recent listening patterns.
+
+The full project repository can be found [here](https://github.com/jthaller/Spotify-Airflow-ETL).
 
 ## Sections
 
-1. [Docker Setup](#Docker)
-2. [OAuth Access Token](#access_token)
-3. [Machine Learning](#ML)
-4. [Push Playlist](#push)
+1. [Docker and Airflow Setup](#Docker)
+2. [OAuth Access Token Automation](#access_token)
+3. [Machine Learning / Recommendation Algorithm](#ML)
+4. [Push Playlist to Your Account](#push)
 
 
 # Step 1. Install Docker with an Apache Airflow Image<a id="Docker"></a>
