@@ -15,6 +15,6 @@ header:
       url: "https://resume.jeremythaller.com/"
     - label: "My Portfolio"
       url: "https://jeremythaller.com"
-excerpt: "I'm a Data Scientist in fintech living in NYC."
+excerpt: "I'm a senior data scientist living in NYC."
 ---
 
