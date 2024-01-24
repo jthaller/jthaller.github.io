@@ -61,7 +61,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         env: # Set Secret Key
-          secret_adobe_api_key: $${{ secrets.ADOBE_API_KEY }}
+          secret_adobe_api_key: $$&#123;{ secrets.ADOBE_API_KEY }$&#123;
 
       # I believe the site is pre-built, otherwise an install/build step goes here
 
@@ -77,7 +77,7 @@ The important part for this workflow are these two lines:
 
 ```yaml
 env: # Set Secret Key
-    secret_adobe_api_key: $${{ secrets.ADOBE_API_KEY }}
+    secret_adobe_api_key: $$&#123;{ secrets.ADOBE_API_KEY }$&#123;
 ```
 
 Note that `ADOBE_API_KEY` is what we called the secret variable in step one, and `secret_adobe_api_key` is what we're going to retreive in the next step. After pushing this file to main, you can check to make sure that your page still builds and deploys in the actions tab of the github repo. 
