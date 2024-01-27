@@ -1,4 +1,4 @@
----
+<!-- ---
 title: "Managing API Secrets in Github Pages"
 date: '2022-06-29'
 categories:
@@ -17,21 +17,21 @@ I recently realized that I had been leaving an API key exposed (oh no!) in the h
 I'll also add, that changes the visibility of the repo is not an option -- github only allows you to restrict access to your github pages if you have an enterprise account.
 
 # First Step (the obvious part):
-Github allows you to set secret environmental variables. You can find this in your repository's settings under `Security>Secrets and Variables>Actions`. Add you API key here as a secret variable
+Github allows you to set secret environmental variables. You can find this in your repository's settings under `Security>Secrets and Variables>Actions`. Add you API key here as a secret variable -->
 
 <!-- <iframe src="/assets/images/same_r_random_dir_plotly.html" height="600px" width="150%" style="border:none;"></iframe> -->
-![](/assets/images/github_pages_post/set_secret_variable.png)
+<!-- ![](/assets/images/github_pages_post/set_secret_variable.png) -->
 
 
-# Second Step (where things get weird)
-So, setting the secret variable is easy, but actually retreiving it is where things get complicated. To actually be able to retreive this secret variable, we need to create a custom build and deploy workflow and set the variable there. To do so, navigate to `settings>pages`, change the source to `"github actions"`, then click on `"create your own"`.
-
+<!-- # Second Step (where things get weird)
+So, setting the secret variable is easy, but actually retreiving it is where things get complicated. To actually be able to retreive this secret variable, we need to create a custom build and deploy workflow and set the variable there. To do so, navigate to `settings>pages`, change the source to `"github actions"`, then click on `"create your own"`. -->
+<!-- 
 
 ![](/assets/images/github_pages_post/created_workflow.png)
 
 This will create a file in a folder name `.github/workflows`. You can name this file something like `build_and_deploy_with_secrets.yaml`.
-Paste this code in there and savit it:
-
+Paste this code in there and savit it: -->
+<!-- 
 ```yaml
 # Build and deploy workflow
 
@@ -96,4 +96,4 @@ Everything is now setup for us to change out our secret value for an env variabl
 		}, {});
 	});
 </script>
-```
+``` -->
