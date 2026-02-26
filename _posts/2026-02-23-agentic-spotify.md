@@ -67,7 +67,7 @@ main()
   ├─► _try_get_cached_token()
   │       checks st.session_state["token_info"] first
   │       if expired → refreshes via auth_manager.refresh_access_token()
-  │       else checks disk cache (.spotify_cache file)
+  │       else checks in-memory cache (MemoryCacheHandler)
   │       returns token dict or None
   │
   ├─ token_info is None?
